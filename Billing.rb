@@ -4,7 +4,7 @@ class Billing
     end
 
     def mostrar
-        return "Cantidad= "
+        return "Cantidad= " + @quantity
     end
 end
 
