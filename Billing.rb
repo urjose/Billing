@@ -3,24 +3,32 @@ class Billing
         @quantity   = quantity.to_f
         @uprice     = uprice.to_f
         @state      = state.to_s
+        @tax_vals = {"CA" => 8.25, "UT" => 6.85, "NV" => 8, "TX" => 6.25, "AL" => 4}
     end
 
     def show
-        calculate()
-        output = "\n"
-        output += "Cantidad= " + @quantity.to_s 
-        output += "\n" 
-        output += "Precio Unitario= " + @uprice.to_s 
-        output += "\n" 
-        output += "Subtotal= " + @subtotal.to_s
-        output += "\n" 
-        output += "Descuento= " + @discount.to_s + "%"
-        output += "\n"
-        output += "Impuesto(#{@state})= " + @tax.to_s + "%"
-        output += "\n"
-        output += "Total= " + @total.to_s
-        output += "\n"
-        output += "\n"
+        if validate()
+            calculate()
+            output = "\n"
+            output += "Cantidad= " + @quantity.to_s 
+            output += "\n" 
+            output += "Precio Unitario= " + @uprice.to_s 
+            output += "\n" 
+            output += "Subtotal= " + @subtotal.to_s
+            output += "\n" 
+            output += "Descuento= " + @discount.to_s + "%"
+            output += "\n"
+            output += "Impuesto(#{@state})= " + @tax.to_s + "%"
+            output += "\n"
+            output += "Total= " + @total.to_s
+            output += "\n"
+            output += "\n"
+        else
+            output = "\n"
+            output += "Los datos ingresados no son correctos"
+            output += "\n\n"
+        end
+
         return output
     end
 
@@ -59,9 +67,19 @@ class Billing
     end
 
     def searchTax()
-        tax = {"CA" => 8.25, "UT" => 6.85, "NV" => 8, "TX" => 6.25, "AL" => 4}
+        return @tax_vals[@state].to_f
+    end
 
-        return tax[@state].to_f
+    def validate()
+        if @quantity <= 0
+            return false
+        end
+
+        if @uprice <= 0
+            return false
+        end
+
+        return @tax_vals.include?(@state)
     end
 end
 
