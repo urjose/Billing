@@ -1,11 +1,16 @@
 class Billing
     def initialize(quantity, uprice)
-        @quantity   = quantity
-        @uprice     = uprice
+        @quantity   = quantity.to_f
+        @uprice     = uprice.to_f
     end
 
     def mostrar
-        return  "Cantidad= " + @quantity + "\n" "Precio Unitario = " + @uprice
+        calcular()
+        return  "Cantidad= " + @quantity.to_s + "\n" "Precio Unitario = " + @uprice.to_s + "\n" "Subtotal = "
+    end
+
+    def calcular
+        @subtotal = @quantity * @uprice
     end
 end
 
