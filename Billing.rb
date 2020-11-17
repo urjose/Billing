@@ -15,7 +15,7 @@ class Billing
         output += "\n" 
         output += "Impuesto(#{@state})= "
         output += "\n"
-        output += "Descuento = "
+        output += "Descuento(#{@state})= "
         output += "\n"
         return output
     end
