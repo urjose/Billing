@@ -5,7 +5,7 @@ class Billing
     end
 
     def mostrar
-        return  "Cantidad= " + @quantity + "\n" "Precio Unitario = "
+        return  "Cantidad= " + @quantity + "\n" "Precio Unitario = " + @uprice
     end
 end
 
