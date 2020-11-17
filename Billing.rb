@@ -29,18 +29,22 @@ class Billing
         @discount   = searchDiscount()
         @tax        = searchTax()
 
-        disc_per    = 1 - ( @discount.to_f / 100 )
         tax_per     = 1 + ( @tax / 100)
 
-        @total      = ( @subtotal * disc_per ) * tax_per
+        if @discount > 0 then
+            disc_per    = 1 - ( @discount.to_f / 100 )
+            @total      = ( @subtotal * disc_per ) * tax_per
+        else
+            @total      = @subtotal * tax_per
+        end
     end
 
     def searchDiscount()
-        discount = {"1000" => 3, "5000" => 5, "7000" => 7, "10000" => 10, "50000" => 15}
+        discount = {"0" => 0, "1000" => 3, "5000" => 5, "7000" => 7, "10000" => 10, "50000" => 15}
 
         case @subtotal
             when 0 .. 1000
-                return 0.
+                return discount["0"]
             when 1001 .. 5000
                 return discount["1000"]
             when 5001 .. 7000
@@ -57,7 +61,7 @@ class Billing
     def searchTax()
         tax = {"CA" => 8.25, "UT" => 6.85, "NV" => 8, "TX" => 6.25, "AL" => 4}
 
-        return tax[@state]
+        return tax[@state].to_f
     end
 end
 
