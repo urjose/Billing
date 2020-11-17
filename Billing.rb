@@ -1,7 +1,8 @@
 class Billing
-    def initialize(quantity, uprice)
+    def initialize(quantity, uprice, state)
         @quantity   = quantity.to_f
         @uprice     = uprice.to_f
+        @state      = state.to_s
     end
 
     def mostrar
@@ -14,5 +15,5 @@ class Billing
     end
 end
 
-obj_billing = Billing.new(ARGV[0], ARGV[1])
+obj_billing = Billing.new(ARGV[0], ARGV[1], ARGV[2])
 puts obj_billing.mostrar()
