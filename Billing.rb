@@ -16,7 +16,7 @@ class Billing
         output += "\n" 
         output += "Descuento= " + @discount.to_s + "%"
         output += "\n"
-        output += "Impuesto(#{@state})= " + @tax.to_s
+        output += "Impuesto(#{@state})= " + @tax.to_s + "%"
         output += "\n"
         output += "Total= " + @total.to_s
         output += "\n"
@@ -30,7 +30,8 @@ class Billing
         @tax        = searchTax()
 
         disc_per    = 1 - ( @discount.to_f / 100 )
-        @total      = @subtotal * disc_per
+        tax_per     = 1 + ( @tax / 100)
+        @total      = ( @subtotal * disc_per ) * tax_per
     end
 
     def searchDiscount()
