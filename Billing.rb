@@ -13,7 +13,7 @@ class Billing
         output += "\n" 
         output += "Subtotal= " + @subtotal.to_s
         output += "\n" 
-        output += "Impuesto(#{@state})= "
+        output += "Impuesto(#{@state})= " + @tax.to_s
         output += "\n"
         output += "Descuento= " + @discount.to_s
         output += "\n"
@@ -21,8 +21,9 @@ class Billing
     end
 
     def calculate
-        @subtotal = @quantity * @uprice
-        @discount = searchDiscount()
+        @subtotal   = @quantity * @uprice
+        @discount   = searchDiscount()
+        @tax        = searchTax()
     end
 
     def searchDiscount()
@@ -42,6 +43,12 @@ class Billing
             else
                 return discount["50000"]
             end
+    end
+
+    def searchTax()
+        tax = {"CA" => 8.25}
+
+        return tax[@state]
     end
 end
 
