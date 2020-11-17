@@ -55,7 +55,7 @@ class Billing
     end
 
     def searchTax()
-        tax = {"CA" => 8.25, "UT" => 6.85, "NV" => 8}
+        tax = {"CA" => 8.25, "UT" => 6.85, "NV" => 8, "TX" => 6.25}
 
         return tax[@state]
     end
