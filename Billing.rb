@@ -17,6 +17,8 @@ class Billing
         output += "\n"
         output += "Descuento= " + @discount.to_s
         output += "\n"
+        output += "Total= "
+        output += "\n"
         return output
     end
 
