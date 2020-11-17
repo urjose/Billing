@@ -1,5 +1,5 @@
 class Billing
-    def initialize(quatity)
+    def initialize(quantity)
         @quantity = quantity
     end
 end
