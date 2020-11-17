@@ -7,7 +7,7 @@ class Billing
 
     def mostrar
         calcular()
-        return  "Cantidad= " + @quantity.to_s + "\n" "Precio Unitario = " + @uprice.to_s + "\n" "Subtotal = " + @subtotal.to_s + "\n" "Impuesto = "
+        return  "Cantidad= " + @quantity.to_s + "\n" "Precio Unitario= " + @uprice.to_s + "\n" "Subtotal= " + @subtotal.to_s + "\n" "Impuesto(#{@state})= "
     end
 
     def calcular
