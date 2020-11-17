@@ -7,17 +7,19 @@ class Billing
 
     def show
         calculate()
-        output = "Cantidad= " + @quantity.to_s 
+        output = "\n"
+        output += "Cantidad= " + @quantity.to_s 
         output += "\n" 
         output += "Precio Unitario= " + @uprice.to_s 
         output += "\n" 
         output += "Subtotal= " + @subtotal.to_s
         output += "\n" 
+        output += "Descuento= " + @discount.to_s + "%"
+        output += "\n"
         output += "Impuesto(#{@state})= " + @tax.to_s
         output += "\n"
-        output += "Descuento= " + @discount.to_s
+        output += "Total= " + @total.to_s
         output += "\n"
-        output += "Total= "
         output += "\n"
         return output
     end
@@ -26,6 +28,9 @@ class Billing
         @subtotal   = @quantity * @uprice
         @discount   = searchDiscount()
         @tax        = searchTax()
+
+        disc_per    = 1 - ( @discount.to_f / 100 )
+        @total      = @subtotal * disc_per
     end
 
     def searchDiscount()
