@@ -31,6 +31,7 @@ class Billing
 
         disc_per    = 1 - ( @discount.to_f / 100 )
         tax_per     = 1 + ( @tax / 100)
+
         @total      = ( @subtotal * disc_per ) * tax_per
     end
 
@@ -54,7 +55,7 @@ class Billing
     end
 
     def searchTax()
-        tax = {"CA" => 8.25}
+        tax = {"CA" => 8.25, "UT" => 6.85}
 
         return tax[@state]
     end
